@@ -1,5 +1,6 @@
 import { FormEvent, KeyboardEvent, useEffect, useMemo, useState } from 'react';
 import {
+  ArrowRight,
   ArrowUpRight,
   Bot,
   BrainCircuit,
@@ -7,6 +8,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  CheckCircle2,
   CircleHelp,
   FileText,
   FolderOpen,
@@ -50,7 +52,7 @@ const initialMessages: ChatMessage[] = [
   { id: 1, role: 'assistant', content: 'Welcome to AI Notebook. I can help you shape ideas, organize research, and make a clear next step from a blank page.' },
 ];
 
-function App() {
+function Workspace() {
   const [activePage, setActivePage] = useState<Page>('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -200,6 +202,75 @@ function MindMapView() {
 
 function SettingsView({ accent, setAccent, compactMode, setCompactMode }: { accent: string; setAccent: (value: string) => void; compactMode: boolean; setCompactMode: (value: boolean) => void }) {
   return <div><PageIntro eyebrow="Make it yours" title="Settings" description="Shape the workspace around how you think best." /><div className="settings-layout"><aside className="settings-nav panel"><button className="active"><Sun size={16} /> Appearance</button><button><MessageSquare size={16} /> Chat preferences</button><button><Settings size={16} /> Account & security</button><button><FolderOpen size={16} /> Data & privacy</button></aside><section className="settings-content"><div className="settings-section"><span className="eyebrow">Interface</span><h2>Appearance</h2><p className="settings-description">Small choices that make the space feel like yours.</p><div className="setting-row"><div><strong>Accent color</strong><span>Choose the energy of your workspace.</span></div><div className="swatches">{['rose', 'blue', 'amber', 'green'].map((color) => <button key={color} className={`swatch ${color} ${accent === color ? 'selected' : ''}`} onClick={() => setAccent(color)} aria-label={`${color} accent`}><Check size={13} /></button>)}</div></div><div className="setting-row"><div><strong>Compact layout</strong><span>Fit more content into your workspace.</span></div><button className={`toggle ${compactMode ? 'on' : ''}`} onClick={() => setCompactMode(!compactMode)} aria-label="Toggle compact layout"><span /></button></div></div><div className="settings-section"><span className="eyebrow">Account</span><h2>Jordan Davis</h2><p className="settings-description">Your account controls will be available when authentication is connected.</p><div className="account-card"><span className="profile-avatar large">JD</span><div><strong>jordan@ainotebook.app</strong><span>Personal workspace · Preview</span></div><button className="secondary-button">Manage <ArrowUpRight size={14} /></button></div></div><div className="settings-section danger-section"><span className="eyebrow">Data</span><h2>Local preview storage</h2><p className="settings-description">Notes and appearance preferences are stored only in this browser until the original backend is restored.</p><button className="danger-button">Clear local workspace</button></div></section></div></div>;
+}
+
+function Landing() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
+  return <div className="landing-page">
+    <header className={`landing-nav ${menuOpen ? 'menu-open' : ''}`}>
+      <a className="landing-brand" href="/" onClick={closeMenu}><span className="landing-logo"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="" /></span><span>AI <em>Notebook</em></span></a>
+      <nav className="landing-links" aria-label="Public navigation"><a href="#features" onClick={closeMenu}>Features</a><a href="#workflow" onClick={closeMenu}>How it works</a><a href="#workspace" onClick={closeMenu}>Workspace</a></nav>
+      <div className="landing-actions"><a className="landing-signin" href="/app">Sign in</a><a className="landing-cta small" href="/app">Get started <ArrowUpRight size={15} /></a></div>
+      <button className="landing-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
+    </header>
+
+    <main>
+      <section className="landing-hero" aria-labelledby="hero-title">
+        <div className="hero-noise" /><div className="hero-light light-a" /><div className="hero-light light-b" />
+        <div className="landing-hero-copy"><div className="landing-pill"><span className="pill-spark"><Sparkles size={13} /></span> A quieter way to think with AI</div><h1 id="hero-title">Make space for<br /><span>better thinking.</span></h1><p>AI Notebook brings your questions, notes, research, and next steps into one calm, intelligent workspace.</p><div className="hero-actions"><a className="landing-cta" href="/app">Enter your workspace <ArrowRight size={17} /></a><a className="landing-text-link" href="#features">Explore features <ChevronDown size={15} /></a></div><div className="hero-note"><span className="note-avatar"><Check size={12} /></span><span>Built for the thoughts that matter.</span></div></div>
+        <div className="hero-product" aria-label="Illustration of the AI Notebook workspace"><div className="product-shadow" /><div className="product-window"><div className="product-top"><span className="window-dots"><i /><i /><i /></span><span className="window-title"><span className="mini-logo"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="" /></span> AI Notebook <span className="window-status">Personal space</span></span><MoreHorizontal size={15} /></div><div className="product-body"><aside className="mini-sidebar"><span className="mini-brand"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="" /></span><span className="mini-side-line active" /><span className="mini-side-line" /><span className="mini-side-line" /><span className="mini-side-line short" /><span className="mini-side-line" /></aside><div className="mini-content"><div className="mini-kicker">SATURDAY, 11 OCTOBER</div><div className="mini-heading">Good morning, Jordan</div><div className="mini-subheading">What are you working through today?</div><div className="mini-prompt"><span><Sparkles size={12} /> Start with a question or a messy thought...</span><span className="mini-send"><ArrowUpRight size={12} /></span></div><div className="mini-cards"><div><span className="mini-card-icon"><MessageSquare size={12} /></span><b>New conversation</b><small>Think out loud with AI</small></div><div><span className="mini-card-icon amber"><StickyNote size={12} /></span><b>Capture a note</b><small>Save a thought before it wanders</small></div></div></div></div></div><div className="floating-chip chip-top"><span className="chip-icon"><BrainCircuit size={14} /></span><span><b>Find the signal</b><small>AI-assisted thinking</small></span></div><div className="floating-chip chip-bottom"><span className="chip-check"><Check size={12} /></span><span><b>Ideas, connected</b><small>Always in one place</small></span></div></div>
+      </section>
+
+      <section className="landing-intro" id="features"><div className="section-kicker">A workspace for your whole mind</div><h2>From scattered thoughts<br /><span>to clear direction.</span></h2><p>Keep the raw idea. Ask better questions. See what connects. AI Notebook gives every stage of your thinking a place to land.</p></section>
+      <section className="feature-story" id="workflow"><FeatureShowcase number="01" label="AI CONVERSATIONS" title="Think out loud, without losing the thread." description="A focused space for exploring an idea, untangling a problem, or asking the question behind the question." visual={<ChatDemo />} /></section>
+      <section className="feature-story reverse"><FeatureShowcase number="02" label="SMART NOTES" title="Give every good thought somewhere to go." description="Capture a flash of insight, shape it over time, and return to it when the moment is right." visual={<NotesDemo />} /></section>
+      <section className="feature-story"><FeatureShowcase number="03" label="TOPIC SUMMARIES" title="See the signal inside the noise." description="Turn dense source material into an outline you can understand, revisit, and act on." visual={<SummaryDemo />} /></section>
+
+      <section className="systems-section"><div className="section-kicker">A connected way to move forward</div><h2>Your ideas do not live<br /><span>in separate boxes.</span></h2><div className="systems-grid"><div className="system-card roadmap-card"><span className="system-number">04</span><div className="system-copy"><h3>Learning roadmaps</h3><p>Give a meaningful goal a sequence, a shape, and a next step.</p></div><RoadmapDemo /></div><div className="system-card mindmap-card"><span className="system-number">05</span><div className="system-copy"><h3>Mind maps</h3><p>Connect the ideas hiding between the lines.</p></div><MindMapDemo /></div></div></section>
+
+      <section className="landing-invite" id="workspace"><div className="invite-orb orb-one" /><div className="invite-orb orb-two" /><span className="landing-logo large"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="AI Notebook" /></span><div className="section-kicker">Your next clear thought</div><h2>Start with the<br /><span>unfinished idea.</span></h2><p>The workspace is ready when you are.</p><a className="landing-cta" href="/app">Open AI Notebook <ArrowUpRight size={17} /></a></section>
+    </main>
+    <footer className="landing-footer"><a className="landing-brand" href="/"><span className="landing-logo"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="" /></span><span>AI <em>Notebook</em></span></a><span>Think clearly. Create freely.</span><div><a href="/app">Workspace</a><a href="#features">Features</a></div></footer>
+  </div>;
+}
+
+function FeatureShowcase({ number, label, title, description, visual }: { number: string; label: string; title: string; description: string; visual: React.ReactNode }) {
+  return <div className="feature-inner"><div className="feature-copy"><span className="feature-number">{number}</span><span className="section-kicker">{label}</span><h2>{title}</h2><p>{description}</p><a href="/app" className="feature-link">Explore in workspace <ArrowUpRight size={15} /></a></div><div className="feature-visual">{visual}</div></div>;
+}
+
+function ChatDemo() {
+  return <div className="demo-window chat-demo"><div className="demo-header"><span><span className="demo-dot pink" /> AI conversation</span><span>DEMO</span></div><div className="demo-chat"><div className="demo-message assistant"><span className="demo-avatar"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="" /></span><span>What are you trying to make clearer?</span></div><div className="demo-message user">I have too many directions and no obvious next step.</div><div className="demo-message assistant"><span className="demo-avatar"><img src="/assets/images/designarena_image_lcyn904e.jpg" alt="" /></span><span>Let’s find the decision underneath the list. Which direction still feels important when you remove the deadline?</span></div><div className="demo-input">Continue the thought <ArrowUpRight size={14} /></div></div></div>;
+}
+
+function NotesDemo() {
+  return <div className="demo-window notes-demo"><div className="demo-note-list"><span className="demo-list-title">NOTES</span><span className="demo-note active"><StickyNote size={13} /> A first, honest draft</span><span className="demo-note"><StickyNote size={13} /> Questions for later</span><span className="demo-note"><StickyNote size={13} /> Product launch</span></div><div className="demo-note-editor"><span className="demo-editor-status"><Check size={12} /> Saved</span><h3>A first, honest draft</h3><p>The beginning does not need to be impressive. It only needs to be true enough to give the next thought somewhere to start.</p><div className="demo-rule" /><span className="demo-editor-fade">Keep writing...</span></div></div>;
+}
+
+function SummaryDemo() {
+  return <div className="demo-window summary-demo"><div className="summary-source"><span className="demo-list-title">SOURCE MATERIAL</span><div className="source-lines"><i /><i /><i /><i /><i /><i /><i /><i /></div><span className="source-tag">2,480 words</span></div><div className="summary-result"><span className="demo-list-title">STRUCTURED SUMMARY</span><h3>The signal</h3><div className="result-line strong" /><div className="result-line" /><div className="result-line" /><h4>Key ideas</h4><div className="result-bullet"><CheckCircle2 size={12} /> Three themes emerge from the source.</div><div className="result-bullet"><CheckCircle2 size={12} /> The most useful context, kept close.</div><div className="result-bullet"><CheckCircle2 size={12} /> A clear next step to carry forward.</div></div></div>;
+}
+
+function RoadmapDemo() {
+  return <div className="roadmap-demo"><div className="roadmap-progress"><span className="roadmap-complete" /><span /><span /><span /></div><div className="roadmap-labels"><b>Start</b><span>Learn the landscape</span><span>Make the first thing</span><b>Share it</b></div><div className="roadmap-tag"><CheckCircle2 size={13} /> 1 milestone complete</div></div>;
+}
+
+function MindMapDemo() {
+  return <div className="mindmap-demo"><span className="mind-line one" /><span className="mind-line two" /><span className="mind-line three" /><span className="mind-node root"><BrainCircuit size={14} /></span><span className="mind-node node-left">Ideas</span><span className="mind-node node-right">Research</span><span className="mind-node node-bottom">Next step</span></div>;
+}
+
+function App() {
+  const [path, setPath] = useState(window.location.pathname);
+  useEffect(() => {
+    const handlePopState = () => setPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+  return path === '/' ? <Landing /> : <Workspace />;
 }
 
 export default App;

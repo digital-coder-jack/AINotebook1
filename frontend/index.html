@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="AI Notebook is a calm workspace for conversations, notes, summaries, roadmaps, and ideas — think clearly, create freely." />
+  <meta name="theme-color" content="#08090d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="AI Notebook" />
+  <title>AI Notebook — Think clearly, create freely</title>
+  <link rel="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/logo-192.png" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Cinematic landing page styles (isolated from existing app CSS) -->
+  <link rel="stylesheet" href="/css/cinematic-landing.css" />
+
+  <!-- Shared app config + auth helpers (SS module) -->
+  <script src="/js/config.js"></script>
+  <script src="/js/app.js"></script>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+</head>
+<body class="cinematic-landing">
+
+  <!-- Canvas-based animated background (video fallback) -->
+  <div class="cl-video-fallback" aria-hidden="true"></div>
+  <div class="cl-video-bg" aria-hidden="true">
+    <canvas id="cl-canvas" aria-hidden="true"></canvas>
+  </div>
+  <div class="cl-video-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="cl-nav" role="banner">
+    <a class="cl-brand" href="/" aria-label="AI Notebook home">
+      <span class="cl-logo"><img src="/assets/logo.png" alt="AI Notebook logo" /></span>
+      <span>AI <em>Notebook</em></span>
+    </a>
+    <nav class="cl-links" aria-label="Public navigation">
+      <a href="#features">Features</a>
+      <a href="#workflow">How it works</a>
+      <a href="#workspace">Workspace</a>
+    </nav>
+    <div class="cl-actions">
+      <a class="cl-signin" href="/login">Sign in</a>
+      <a class="cl-cta small" href="/signup">Get started
+        <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
+    </div>
+    <button class="cl-menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="cl-hero" aria-labelledby="hero-title">
+      <div class="cl-hero-noise" aria-hidden="true"></div>
+      <div class="cl-hero-light light-a" aria-hidden="true"></div>
+      <div class="cl-hero-light light-b" aria-hidden="true"></div>
+
+      <div class="cl-hero-copy">
+        <div class="cl-pill">
+          <span class="pill-spark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></svg>
+          </span>
+          A quieter way to think with AI
+        </div>
+        <h1 id="hero-title">Make space for<br /><span>better thinking.</span></h1>
+        <p>AI Notebook brings your questions, notes, research, and next steps into one calm, intelligent workspace.</p>
+        <div class="cl-hero-actions">
+          <a class="cl-cta" href="/signup">Enter your workspace
+            <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="cl-text-link" href="#features">Explore features
+            <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+        </div>
+        <div class="cl-hero-note">
+          <span class="note-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span>Built for the thoughts that matter.</span>
+        </div>
+      </div>
+
+      <!-- Product preview -->
+      <div class="cl-hero-product" aria-label="Illustration of the AI Notebook workspace">
+        <div class="cl-product-shadow" aria-hidden="true"></div>
+        <div class="cl-product-window">
+          <div class="cl-product-top">
+            <span class="window-dots"><i></i><i></i><i></i></span>
+            <span class="window-title">
+              <span class="cl-mini-logo"><img src="/assets/logo.png" alt="" /></span>
+              AI Notebook
+              <span class="window-status">Personal space</span>
+            </span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+          <div class="cl-product-body">
+            <aside class="cl-mini-sidebar">
+              <span class="cl-mini-brand"><img src="/assets/logo.png" alt="" /></span>
+              <span class="cl-mini-side-line active"></span>
+              <span class="cl-mini-side-line"></span>
+              <span class="cl-mini-side-line"></span>
+              <span class="cl-mini-side-line short"></span>
+              <span class="cl-mini-side-line"></span>
+            </aside>
+            <div class="cl-mini-content">
+              <div class="cl-mini-kicker">SATURDAY, 11 OCTOBER</div>
+              <div class="cl-mini-heading">Good morning, Jordan</div>
+              <div class="cl-mini-subheading">What are you working through today?</div>
+              <div class="cl-mini-prompt">
+                <span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></svg>
+                  Start with a question or a messy thought...
+                </span>
+                <span class="cl-mini-send">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </span>
+              </div>
+              <div class="cl-mini-cards">
+                <div>
+                  <span class="cl-mini-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  </span>
+                  <b>New conversation</b>
+                  <small>Think out loud with AI</small>
+                </div>
+                <div>
+                  <span class="cl-mini-card-icon amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  </span>
+                  <b>Capture a note</b>
+                  <small>Save a thought before it wanders</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating chips -->
+        <div class="cl-floating-chip chip-top">
+          <span class="chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M12 5a3 3 0 0 0-3 3 3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3-3z"/><path d="M12 5v14"/></svg>
+          </span>
+          <span><b>Find the signal</b><small>AI-assisted thinking</small></span>
+        </div>
+        <div class="cl-floating-chip chip-bottom">
+          <span class="chip-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span><b>Ideas, connected</b><small>Always in one place</small></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="cl-intro" id="features">
+      <div class="cl-section-kicker">A workspace for your whole mind</div>
+      <h2>From scattered thoughts<br /><span>to clear direction.</span></h2>
+      <p>Keep the raw idea. Ask better questions. See what connects. AI Notebook gives every stage of your thinking a place to land.</p>
+    </section>
+
+    <!-- Feature: AI Chat -->
+    <section class="cl-feature-story" id="workflow">
+      <div class="cl-feature-inner">
+        <div class="cl-feature-copy">
+          <span class="cl-feature-number">01</span>
+          <span class="cl-section-kicker">AI CONVERSATIONS</span>
+          <h2>Think out loud, without losing the thread.</h2>
+          <p>A focused space for exploring an idea, untangling a problem, or asking the question behind the question.</p>
+          <a href="/chat" class="cl-feature-link">Explore in workspace
+            <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+        <div class="cl-feature-visual">
+          <div class="cl-demo-window">
+            <div class="cl-demo-header">
+              <span><span class="cl-demo-dot pink"></span> AI conversation</span>
+              <span>DEMO</span>
+            </div>
+            <div class="cl-demo-chat">
+              <div class="cl-demo-message assistant">
+                <span class="cl-demo-avatar"><img src="/assets/logo.png" alt="" /></span>
+                <span>What are you trying to make clearer?</span>
+              </div>
+              <div class="cl-demo-message user">I have too many directions and no obvious next step.</div>
+              <div class="cl-demo-message assistant">
+                <span class="cl-demo-avatar"><img src="/assets/logo.png" alt="" /></span>
+                <span>Let&rsquo;s find the decision underneath the list. Which direction still feels important when you remove the deadline?</span>
+              </div>
+              <div class="cl-demo-input">Continue the thought
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature: Smart Notes -->
+    <section class="cl-feature-story reverse">
+      <div class="cl-feature-inner">
+        <div class="cl-feature-copy">
+          <span class="cl-feature-number">02</span>
+          <span class="cl-section-kicker">SMART NOTES</span>
+          <h2>Give every good thought somewhere to go.</h2>
+          <p>Capture a flash of insight, shape it over time, and return to it when the moment is right.</p>
+          <a href="/tools" class="cl-feature-link">Explore in workspace
+            <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+        <div class="cl-feature-visual">
+          <div class="cl-demo-window cl-notes-demo">
+            <div class="cl-demo-note-list">
+              <span class="cl-demo-list-title">NOTES</span>
+              <span class="cl-demo-note active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                A first, honest draft
+              </span>
+              <span class="cl-demo-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Questions for later
+              </span>
+              <span class="cl-demo-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Product launch
+              </span>
+            </div>
+            <div class="cl-demo-note-editor">
+              <span class="cl-demo-editor-status">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Saved
+              </span>
+              <h3>A first, honest draft</h3>
+              <p>The beginning does not need to be impressive. It only needs to be true enough to give the next thought somewhere to start.</p>
+              <div class="cl-demo-rule"></div>
+              <span class="cl-demo-editor-fade">Keep writing...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature: Topic Summaries -->
+    <section class="cl-feature-story">
+      <div class="cl-feature-inner">
+        <div class="cl-feature-copy">
+          <span class="cl-feature-number">03</span>
+          <span class="cl-section-kicker">TOPIC SUMMARIES</span>
+          <h2>See the signal inside the noise.</h2>
+          <p>Turn dense source material into an outline you can understand, revisit, and act on.</p>
+          <a href="/topic" class="cl-feature-link">Explore in workspace
+            <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+        <div class="cl-feature-visual">
+          <div class="cl-demo-window cl-summary-demo">
+            <div class="cl-summary-source">
+              <span class="cl-demo-list-title">SOURCE MATERIAL</span>
+              <div class="cl-source-lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <span class="cl-source-tag">2,480 words</span>
+            </div>
+            <div class="cl-summary-result">
+              <span class="cl-demo-list-title">STRUCTURED SUMMARY</span>
+              <h3>The signal</h3>
+              <div class="cl-result-line strong"></div>
+              <div class="cl-result-line"></div>
+              <div class="cl-result-line"></div>
+              <h4>Key ideas</h4>
+              <div class="cl-result-bullet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 16 9"/></svg>
+                Three themes emerge from the source.
+              </div>
+              <div class="cl-result-bullet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 16 9"/></svg>
+                The most useful context, kept close.
+              </div>
+              <div class="cl-result-bullet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 16 9"/></svg>
+                A clear next step to carry forward.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Systems section: Roadmaps + Mind Maps -->
+    <section class="cl-systems">
+      <div class="cl-section-kicker">A connected way to move forward</div>
+      <h2>Your ideas do not live<br /><span>in separate boxes.</span></h2>
+      <div class="cl-systems-grid">
+        <div class="cl-system-card cl-roadmap-card">
+          <span class="cl-system-number">04</span>
+          <div class="cl-system-copy">
+            <h3>Learning roadmaps</h3>
+            <p>Give a meaningful goal a sequence, a shape, and a next step.</p>
+          </div>
+          <div class="cl-roadmap-demo">
+            <div class="cl-roadmap-progress">
+              <span class="cl-roadmap-complete"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="cl-roadmap-labels">
+              <b>Start</b>
+              <span>Learn the landscape</span>
+              <span>Make the first thing</span>
+              <b>Share it</b>
+            </div>
+            <div class="cl-roadmap-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 16 9"/></svg>
+              1 milestone complete
+            </div>
+          </div>
+        </div>
+        <div class="cl-system-card cl-mindmap-card">
+          <span class="cl-system-number">05</span>
+          <div class="cl-system-copy">
+            <h3>Mind maps</h3>
+            <p>Connect the ideas hiding between the lines.</p>
+          </div>
+          <div class="cl-mindmap-demo">
+            <span class="cl-mind-line one"></span>
+            <span class="cl-mind-line two"></span>
+            <span class="cl-mind-line three"></span>
+            <span class="cl-mind-node root">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M12 5a3 3 0 0 0-3 3 3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3-3z"/><path d="M12 5v14"/></svg>
+            </span>
+            <span class="cl-mind-node node-left">Ideas</span>
+            <span class="cl-mind-node node-right">Research</span>
+            <span class="cl-mind-node node-bottom">Next step</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Invite / CTA -->
+    <section class="cl-invite" id="workspace">
+      <div class="cl-invite-orb orb-one" aria-hidden="true"></div>
+      <div class="cl-invite-orb orb-two" aria-hidden="true"></div>
+      <span class="cl-logo large"><img src="/assets/logo.png" alt="AI Notebook" /></span>
+      <div class="cl-section-kicker">Your next clear thought</div>
+      <h2>Start with the<br /><span>unfinished idea.</span></h2>
+      <p>The workspace is ready when you are.</p>
+      <a class="cl-cta" href="/signup">Open AI Notebook
+        <svg class="cl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17" aria-hidden="true"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="cl-footer" role="contentinfo">
+    <a class="cl-brand" href="/">
+      <span class="cl-logo"><img src="/assets/logo.png" alt="AI Notebook logo" /></span>
+      <span>AI <em>Notebook</em></span>
+    </a>
+    <span>Think clearly. Create freely.</span>
+    <div>
+      <a href="/dashboard">Workspace</a>
+      <a href="#features">Features</a>
+      <a href="/login">Sign in</a>
+    </div>
+  </footer>
+
+  <!-- Cinematic landing page JS -->
+  <script src="/js/cinematic-landing.js"></script>
+</body>
+</html>

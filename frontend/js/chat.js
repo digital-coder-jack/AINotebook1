@@ -126,7 +126,7 @@ function showEmptyState() {
   el.messages.innerHTML = `
     <div class="chat-empty">
       <div>
-        <div class="big"><img src="/assets/logo.png" alt="AI Notebook Logo" class="logo-img" /></div>
+        <div class="big"><img src="/assets/ai-notebook.jpg" alt="AI Notebook Logo" class="logo-img" /></div>
         <h2>How can I help you study today?</h2>
         <p>Ask a question, request an explanation, or pick a starter below.</p>
         <div class="suggest-grid">
@@ -160,7 +160,7 @@ function appendMessage(role, content) {
   msg.className = `msg ${role}`;
   const avatar = role === 'user'
     ? escapeHtml(userInitial())
-    : '<img src="/assets/logo.png" alt="AI Notebook Logo" class="logo-img" />';
+    : '<img src="/assets/ai-notebook.jpg" alt="AI Notebook Logo" class="logo-img" />';
   msg.innerHTML = `
     <div class="avatar">${avatar}</div>
     <div class="bubble"><div class="role">${role === 'user' ? 'You' : 'AI Notebook'}</div><div class="body"></div></div>`;
@@ -500,7 +500,7 @@ async function downloadChat() {
     const data = await SS.api(`/api/chats/${state.currentId}`);
     let md = `# ${data.chat.title}\n\n_Exported from AI Notebook_\n\n`;
     data.messages.forEach((m) => {
-      md += `## ${m.role === 'user' ? '🧑 You' : '<img src="/assets/logo.png" alt="AI Notebook Logo" class="logo-img" /> AI Notebook'}\n\n${m.content}\n\n---\n\n`;
+      md += `## ${m.role === 'user' ? '🧑 You' : '<img src="/assets/ai-notebook.jpg" alt="AI Notebook Logo" class="logo-img" /> AI Notebook'}\n\n${m.content}\n\n---\n\n`;
     });
     const blob = new Blob([md], { type: 'text/markdown' });
     const a = document.createElement('a');

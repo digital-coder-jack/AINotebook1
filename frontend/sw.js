@@ -25,9 +25,7 @@ const APP_SHELL = [
   '/js/config.js',
   '/js/app.js',
   '/js/pwa.js',
-  '/assets/logo.png',
-  '/assets/logo-192.png',
-  '/assets/logo-512.png',
+  '/assets/ai-notebook.jpg',
   '/manifest.json',
 ];
 

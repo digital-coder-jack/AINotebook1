@@ -4,7 +4,7 @@
 
 This package integrates the redesigned UI from the AINotebook1 repository into the original AI-Notebook production repository. The integration is intentionally non-destructive: all backend code, API routes, authentication, database, AI providers, and deployment configuration remain untouched.
 
-**Total files: 3 CREATE, 12 MODIFY (1-line change each), 0 backend changes**
+**Total files: 4 CREATE, 12 MODIFY (1-line change each), 0 backend changes**
 
 ---
 
@@ -17,6 +17,7 @@ This package integrates the redesigned UI from the AINotebook1 repository into t
 | 1 | `frontend/css/cinematic-landing.css` | Complete styling for the new cinematic landing page |
 | 2 | `frontend/css/workspace-redesign.css` | Master visual override — ports the new dark theme, DM Sans + Space Grotesk typography, accent color system, and all component redesigns onto existing class names. Loaded last so `!important` rules take effect. |
 | 3 | `frontend/js/cinematic-landing.js` | Vanilla JS for the landing page: canvas particle background, mobile menu, smooth scroll, auth-aware redirect |
+| 4 | `frontend/assets/ai-notebook.jpg` | Shared AI Notebook logo used across web pages and PWA metadata |
 
 ### B. Files to UPDATE (12 files — each needs exactly ONE line added)
 
@@ -47,7 +48,7 @@ Every internal HTML page needs a single `<link>` tag added as the **last stylesh
 - All existing frontend JavaScript (`frontend/js/*.js`) — except adding the new `cinematic-landing.js`
 - All existing CSS files (`frontend/css/*.css`) — the new files layer ON TOP
 - `frontend/manifest.json`, `frontend/sw.js`
-- `frontend/assets/*` (all logo images)
+- `frontend/assets/logo*.png` (legacy files retained for compatibility)
 - `vercel.json`, `requirements.txt`, `runtime.txt`
 - `.env`, `.gitignore`
 - Android app files
@@ -223,10 +224,10 @@ This line must go AFTER all other stylesheet links, specifically after `<link re
 
 ## Image Assets
 
-No new image assets are needed. The redesign uses the existing logo files:
-- `frontend/assets/logo.png` — used in landing page and sidebar
-- `frontend/assets/logo-192.png` — used for favicon and apple-touch-icon
-- `frontend/assets/logo-512.png` — used for PWA manifest
+The shared logo asset is:
+- `frontend/assets/ai-notebook.jpg` — used everywhere in the web UI, favicon links, Apple touch icon links, and PWA metadata
+
+The previous PNG logo files remain in place for backward compatibility but are no longer referenced by the web pages.
 
 All SVG icons in the landing page are inline (no external icon library needed for the landing page). Internal pages continue using FontAwesome as before.
 
@@ -240,6 +241,7 @@ Before deploying, verify each item:
 - [ ] `frontend/css/cinematic-landing.css` exists (446 lines)
 - [ ] `frontend/css/workspace-redesign.css` exists (2014 lines)
 - [ ] `frontend/js/cinematic-landing.js` exists (217 lines)
+- [ ] `frontend/assets/ai-notebook.jpg` exists and is the shared logo
 - [ ] `frontend/index.html` replaced with new cinematic landing page
 
 ### Link Tags (verify each internal page has the link as the LAST stylesheet)
@@ -279,6 +281,7 @@ Before deploying, verify each item:
 - [ ] Accent color switcher still works
 - [ ] PWA manifest and service worker still function
 - [ ] Vercel deployment succeeds (all files served as static assets)
+- [ ] Android/native app update is handled separately if an Android project is added to the repository; no Android source directory exists in the current repository
 
 ### Backend Verification (should be zero changes)
 - [ ] All API routes respond as before

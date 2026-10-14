@@ -100,7 +100,7 @@
     '<div class="side-head">' +
       '<a class="brand" href="/dashboard" aria-label="AI Notebook home">' +
         '<span class="logo" aria-hidden="true">' +
-          '<img src="/assets/logo.png" alt="" class="logo-img" />' +
+          '<img src="/assets/ai-notebook.jpg" alt="" class="logo-img" />' +
         '</span>' +
         '<span class="brand-text">AI <span class="grad-text">Notebook</span></span>' +
       '</a>' +

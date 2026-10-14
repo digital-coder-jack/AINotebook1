@@ -149,7 +149,7 @@
     overlay.innerHTML =
       '<section class="ob-modal" id="obModal">' +
         '<header class="ob-head">' +
-          '<span class="ob-brand"><img src="/assets/logo-192.png" alt="" /> AI Notebook</span>' +
+          '<span class="ob-brand"><img src="/assets/ai-notebook.jpg" alt="" /> AI Notebook</span>' +
           '<button class="ob-skip" id="obSkip" type="button">Skip for now</button>' +
         '</header>' +
         '<div class="ob-progress" id="obProgress" aria-hidden="true">' +
